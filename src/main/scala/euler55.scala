@@ -16,5 +16,10 @@ NOTE: Wording was modified slightly on 24 April 2007 to emphasise the theoretica
 
 object euler55 extends App{
   def ispal (n :String) = n.take(n.length/2) == n.takeRight(n.length/2).reverse
-  println("Hello")
+  var a=0;
+  for (a <- 0 to 1000000){
+    if(ispal(a.toString)){
+      println(a);
+    }
+  }
 }

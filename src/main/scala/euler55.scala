@@ -20,10 +20,10 @@ NOTE: Wording was modified slightly on 24 April 2007 to emphasise the theoretica
 */
 
 
-object euler55 extends App{
-  def ispal (n :String) = n.take(n.length/2) == n.takeRight(n.length/2).reverse
+object euler55 extends App {
+  def ispal(n: String) = n.take(n.length / 2) == n.takeRight(n.length / 2).reverse
 
-/*  def lychrelStream(n: BigInt): Stream[BigInt] = {
+  /*  def lychrelStream(n: BigInt): Stream[BigInt] = {
       val next = n + BigInt(n.toString.reverse)
       if (ispal(next.toString))
         Stream(next)
@@ -31,19 +31,25 @@ object euler55 extends App{
         next #:: lychrelStream(next)
     }*/
 
-  def islychrel(n: BigInt): Boolean = {
-    val next = n + BigInt(n.toString.reverse)
-    if (ispal(next.toString()))
-      true
-    else
-      islychrel(next)
+  def islychrel(n: BigInt, limit: Int): Boolean = {
+    for (i <- 1 to limit) {
+      val next = n + BigInt(n.toString.reverse)
+      if (ispal(next.toString()))
+        true
+      else
+        islychrel(next, limit);
+    }
+    false
   }
-//  def solve = (1 to 10000).count(lychrelStream(_).take(50).size == 50)
-//  println(solve);
 
-  def extended = for (i <- 10000 to 20000){
-    if{
+  //  def solve = (1 to 10000).count(lychrelStream(_).take(50).size == 50)
+  //  println(solve);
+
+  def main() = {
+    var i = 0;
+    for (i <- 10000 to 20000) {
+      //println(i + "evaluates to " + islychrel(i,50));
       println(i)
     }
   }
-  }
+}

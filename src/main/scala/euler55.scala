@@ -21,12 +21,29 @@ NOTE: Wording was modified slightly on 24 April 2007 to emphasise the theoretica
 
 
 object euler55 extends App{
-  var m;
   def ispal (n :String) = n.take(n.length/2) == n.takeRight(n.length/2).reverse
-  def islychrel(n :String) = {
-    m = n;
-    for(i <-1 to 50){
 
+/*  def lychrelStream(n: BigInt): Stream[BigInt] = {
+      val next = n + BigInt(n.toString.reverse)
+      if (ispal(next.toString))
+        Stream(next)
+      else
+        next #:: lychrelStream(next)
+    }*/
+
+  def islychrel(n: BigInt): Boolean = {
+    val next = n + BigInt(n.toString.reverse)
+    if (ispal(next.toString()))
+      true
+    else
+      islychrel(next)
+  }
+//  def solve = (1 to 10000).count(lychrelStream(_).take(50).size == 50)
+//  println(solve);
+
+  def extended = for (i <- 10000 to 20000){
+    if{
+      println(i)
     }
   }
-}
+  }
